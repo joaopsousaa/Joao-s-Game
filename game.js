@@ -8,26 +8,26 @@ class Game {
   preload() {
     this.background.preload();
     this.player.preload();
-    this.obstacle.preload();
+    // this.obstacle.preload();
   }
 
   play() {
     this.background.drawBackground();
     this.player.drawPlayer();
 
-    if (frameCount % 50 === 0) {
-      this.obstacleArr.push(new Obstacle());
-    }
+    // if (frameCount % 50 === 0) {
+    //   this.obstacleArr.push(new Obstacle());
+    // }
 
-    this.obstacleArr = this.obstacleArr.filter((obstacle) => {
-      obstacle.drawObstacle();
+    // this.obstacleArr = this.obstacleArr.filter((obstacle) => {
+    //   obstacle.drawObstacle();
 
-      if (this.isColliding(this.player, obstacle)) {
-        this.gameOver();
-      }
+    //   if (this.isColliding(this.player, obstacle)) {
+    //     this.gameOver();
+    //   }
 
-      return obstacle.top <= CANVAS_HEIGHT;
-    });
+    //   return obstacle.top <= CANVAS_HEIGHT;
+    // });
   }
 
   isColliding(player, obstacle) {

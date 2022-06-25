@@ -7,7 +7,7 @@ class Obstacle {
   }
 
   preload() {
-    this.img = loadImage("/images/Formula1.svg");
+    this.img = loadImage("images/Formula1.svg");
   }
 
   drawObstacle() {

@@ -6,7 +6,7 @@ class Background {
   }
 
   preload() {
-    this.img = loadImage("/images/Infinite_Road.png");
+    this.img = loadImage("images/Infinite_Road.png");
   }
 
   drawBackground() {
