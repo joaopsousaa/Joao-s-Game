@@ -1,13 +1,10 @@
 class Obstacle {
-  constructor() {
+  constructor(img) {
     this.left = random(0, CANVAS_WIDTH - 100);
     this.height = 100;
     this.top = -105;
     this.width = 100;
-  }
-
-  preload() {
-    this.img = loadImage("/images/Formula1.svg");
+    this.img = img;
   }
 
   drawObstacle() {

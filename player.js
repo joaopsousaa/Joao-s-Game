@@ -4,6 +4,7 @@ class Player {
     this.top = 500;
     this.width = 75;
     this.height = 160;
+    this.crash = false;
   }
 
   preload() {
