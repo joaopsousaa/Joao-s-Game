@@ -6,4 +6,7 @@ const ARROW_LEFT = 37;
 const ARROW_UP = 38;
 const SPACE_BAR = 32;
 let obstacleImg;
-let timer = 0;
+let powerUpImg;
+let score = 0;
+const scoreEl = document.getElementById("scoreEl");
+const timeElement = document.getElementById("chronometer-watch");

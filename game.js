@@ -3,17 +3,34 @@ class Game {
     this.player = new Player();
     this.background = new Background();
     this.obstacleArr = [];
+    this.powerUpArr = [];
+    this.chronometer = new Chronometer();
   }
 
   preload() {
     this.background.preload();
     this.player.preload();
     obstacleImg = loadImage("/images/Formula1.svg");
+    powerUpImg = loadImage("/images/Formula1.svg");
   }
 
   play() {
+    this.startGame();
+
     this.background.drawBackground();
     this.player.drawPlayer();
+
+    if (frameCount % 500 === 0) {
+      this.powerUpArr.push(new PowerUp(powerUpImg));
+    }
+    this.powerUpArr = this.powerUpArr.filter((powerUp) => {
+      powerUp.drawPowerUp();
+      if (this.isColliding(this.player, powerUp)) {
+        powerUp.top = CANVAS_HEIGHT;
+        score += 10;
+      }
+      return powerUp.top <= CANVAS_HEIGHT;
+    });
 
     if (frameCount % 50 === 0) {
       this.obstacleArr.push(new Obstacle(obstacleImg));
@@ -24,12 +41,13 @@ class Game {
 
       if (this.isColliding(this.player, obstacle)) {
         this.gameOver();
+      } else if (obstacle.top >= CANVAS_HEIGHT) {
+        score++;
       }
-
       return obstacle.top <= CANVAS_HEIGHT;
     });
 
-    this.startGame();
+    scoreEl.innerHTML = score;
   }
 
   isColliding(player, obstacle) {
@@ -54,23 +72,28 @@ class Game {
       isRightOfABiggerThanLeftOfB
     );
   }
+
   startGame() {
-    let gameIntro = document.getElementById("game-intro");
-    let gameCanvas = document.getElementById("game-zone");
-    gameIntro.style.display = "none";
-    gameCanvas.style.display = "block";
+    let startButton = document.getElementById("startButton");
+    startButton.addEventListener("click", (event) => {
+      this.toggleScreen("game-intro", false);
+      this.toggleScreen("game-zone", true);
+      this.chronometer.startTimer();
+    });
   }
 
-  // toggleScreen(id, toggle) {
-  //   let element = document.getElementById(id);
-  //   if (toggle === false) {
-  //     let display = "none";
-  //   }
-  //   display = "block";
-  //   element.style.display = display;
-  // }
+  toggleScreen(id, toggle) {
+    let element = document.getElementById(id);
+    if (toggle === false) {
+      return (element.className = "off-screen");
+    }
+    return (element.className = "on-screen");
+  }
 
   // gameOver() {
   //   noLoop();
+  //   this.toggleScreen("game-intro", false);
+  //   this.toggleScreen("game-zone", false);
+  //   this.toggleScreen("game-over", true);
   // }
 }

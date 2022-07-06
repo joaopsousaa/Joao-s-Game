@@ -2,7 +2,7 @@ class Background {
   constructor() {
     this.left = 0;
     this.top = 0;
-    this.speed = 4;
+    this.speed = 8;
   }
 
   preload() {

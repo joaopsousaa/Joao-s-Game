@@ -8,23 +8,37 @@
     <title>Fast&Furious - Daily Commute</title>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
   </head>
+
   <body>
-    <div id="game-intro" style="display: block">
+    <div id="game-intro" class="on-screen">
       <article>
         <h1>Fast&Furious - Daily Commute</h1>
         <p>
           It's 7am, the alarm goes off for you to get up and go to work. But you
-          are so tired that you hit the snooze button and thought that if you
-          rest your eyes for just 5 minutes you would feel better. You wake up
-          and it's now 7:50 am, and now you have to get to work in just 10
-          minutes or your boss will fired you!
+          are so tired that you hit the snooze button and think that if you rest
+          your eyes for just 5 minutes you would feel refreshed (big
+          mistake).<br />
+          You wake up and it's now 7:50 am, and now you have to get to work in
+          just 10 minutes or your boss will fired you!
         </p>
       </article>
-      <button type="button">Start Game!</button>
+      <button type="button" id="startButton" class="start-game-button">
+        Start Game!
+      </button>
     </div>
-    <div id="game-zone" style="display: none"></div>
+
+    <div id="game-zone" class="off-screen">
+      <div><span>Score: </span><span id="scoreEl">0</span></div>
+      <div id="chronometer-watch">00:00</div>
+    </div>
+    <div id="game-over" class="off-screen">
+      <h1>Game Over</h1>
+      <h2>You are fired!</h2>
+    </div>
     <script src="constants.js"></script>
     <script src="background.js"></script>
+    <script src="chronometer.js"></script>
+    <script src="powerUp.js"></script>
     <script src="obstacle.js"></script>
     <script src="player.js"></script>
     <script src="game.js"></script>
