@@ -10,8 +10,8 @@ class Game {
   preload() {
     this.background.preload();
     this.player.preload();
-    obstacleImg = loadImage("/images/Formula1.svg");
-    powerUpImg = loadImage("/images/NOS.PNG");
+    obstacleImg = loadImage("images/Formula1.svg");
+    powerUpImg = loadImage("images/NOS.PNG");
   }
 
   superMomentum() {

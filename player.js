@@ -7,7 +7,7 @@ class Player {
   }
 
   preload() {
-    this.img = loadImage("/images/Player.svg");
+    this.img = loadImage("images/Player.svg");
   }
 
   drawPlayer() {
