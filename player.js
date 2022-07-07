@@ -2,12 +2,12 @@ class Player {
   constructor() {
     this.left = 300;
     this.top = 500;
-    this.width = 75;
-    this.height = 160;
+    this.width = 70;
+    this.height = 120;
   }
 
   preload() {
-    this.img = loadImage("/images/Formula1.svg");
+    this.img = loadImage("/images/Player.svg");
   }
 
   drawPlayer() {
