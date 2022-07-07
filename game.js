@@ -11,11 +11,24 @@ class Game {
     this.background.preload();
     this.player.preload();
     obstacleImg = loadImage("/images/Formula1.svg");
-    powerUpImg = loadImage("/images/Formula1.svg");
+    powerUpImg = loadImage("/images/NOS.PNG");
+  }
+
+  superMomentum() {
+    if (this.intervalId) {
+      return;
+    }
+    this.isPowerUpOn = true;
+    this.intervalId = setTimeout(() => {
+      this.intervalId = null;
+      this.isPowerUpOn = false;
+    }, 10 * 1000);
   }
 
   play() {
-    this.startGame();
+    if (!this.hasStarted) {
+      return;
+    }
 
     this.background.drawBackground();
     this.player.drawPlayer();
@@ -28,6 +41,8 @@ class Game {
       if (this.isColliding(this.player, powerUp)) {
         powerUp.top = CANVAS_HEIGHT;
         score += 10;
+        this.chronometer.remove10Seconds();
+        this.superMomentum();
       }
       return powerUp.top <= CANVAS_HEIGHT;
     });
@@ -37,7 +52,7 @@ class Game {
     }
 
     this.obstacleArr = this.obstacleArr.filter((obstacle) => {
-      obstacle.drawObstacle();
+      obstacle.drawObstacle(this.isPowerUpOn);
 
       if (this.isColliding(this.player, obstacle)) {
         this.gameOver();
@@ -48,6 +63,13 @@ class Game {
     });
 
     scoreEl.innerHTML = score;
+  }
+
+  startGame() {
+    this.hasStarted = true;
+    this.chronometer.startTimer();
+    this.toggleScreen("game-intro", false);
+    this.toggleScreen("game-zone", true);
   }
 
   isColliding(player, obstacle) {
@@ -73,15 +95,6 @@ class Game {
     );
   }
 
-  startGame() {
-    let startButton = document.getElementById("startButton");
-    startButton.addEventListener("click", (event) => {
-      this.toggleScreen("game-intro", false);
-      this.toggleScreen("game-zone", true);
-      this.chronometer.startTimer();
-    });
-  }
-
   toggleScreen(id, toggle) {
     let element = document.getElementById(id);
     if (toggle === false) {
@@ -90,10 +103,10 @@ class Game {
     return (element.className = "on-screen");
   }
 
-  // gameOver() {
-  //   noLoop();
-  //   this.toggleScreen("game-intro", false);
-  //   this.toggleScreen("game-zone", false);
-  //   this.toggleScreen("game-over", true);
-  // }
+  gameOver() {
+    noLoop();
+    this.toggleScreen("game-intro", false);
+    this.toggleScreen("game-zone", false);
+    this.toggleScreen("game-over", true);
+  }
 }

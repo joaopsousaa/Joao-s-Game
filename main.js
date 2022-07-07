@@ -12,3 +12,8 @@ function preload() {
 function draw() {
   game.play();
 }
+
+let startButton = document.getElementById("startButton");
+startButton.addEventListener("click", (event) => {
+  game.startGame();
+});
