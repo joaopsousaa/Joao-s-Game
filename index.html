@@ -18,8 +18,11 @@
           are so tired that you hit the snooze button and think that if you rest
           your eyes for just 5 minutes you would feel refreshed
           <em>(big mistake)</em>.<br />
-          You wake up and it's now 7:50 am, and now you have to get to work in
-          just <b>10 minutes or your boss will fired you!</b>
+          You wake up and it's now 7:55 am, and now you have to get to work in
+          just <b>5 minutes or your boss will fired you!</b> <br />Your goal is
+          to get there as fast as possible without crashing.<br /><em
+            >Hint: Catch the NOS for bonus points.</em
+          >
         </p>
       </article>
       <button type="button" id="startButton" class="start-game-button">
@@ -28,12 +31,30 @@
     </div>
 
     <div id="game-zone" class="off-screen">
-      <div><span>Score: </span><span id="scoreEl">0</span></div>
-      <div id="chronometer-watch">00:00</div>
+      <div id="score-screen">
+        <span>Score: </span><span id="scoreEl">0</span>
+      </div>
+      <div id="chronometer-watch">05:00</div>
+      <div id="controls-info">
+        <h3>Controls</h3>
+        <p>
+          &#8593  Move Up | &#8595  Move Down | &#8594  Move Right
+          | &#8592  Move Left |
+        </p>
+      </div>
     </div>
+
     <div id="game-over" class="off-screen">
       <h1>Game Over</h1>
-      <h2>You are fired!</h2>
+      <h2 id="lost"class="off-screen">You are fired!</h2>
+      <h2 id="win"class="off-screen">You still have a job!</h2>
+      <span>Your Score: </span><span id="score-result">0</span><br>
+      <span>Your Highest Score: </span><span id="highest-score-result">0</span>
+      <div>
+        <button type="button" id="restartButton" class="restart-game-button">
+          Restart Game
+        </button>
+      </div>
     </div>
 
     <script src="constants.js"></script>

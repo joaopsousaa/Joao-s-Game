@@ -1,11 +1,11 @@
 class Chronometer {
   constructor() {
-    this.currentTimeSecs = 0;
+    this.currentTimeSecs = 300;
     this.intervalId = null;
   }
 
   timer() {
-    this.currentTimeSecs++;
+    this.currentTimeSecs--;
 
     let mins = Math.floor(this.currentTimeSecs / 60);
     let secs = Math.floor(this.currentTimeSecs % 60);
@@ -38,6 +38,10 @@ class Chronometer {
   stopTimer() {
     clearInterval(this.intervalId);
     this.intervalId = null;
+  }
+
+  resetTimer() {
+    this.currentTimeSecs = 300;
   }
 
   // Inside function () {} syntax, this is the Window object.

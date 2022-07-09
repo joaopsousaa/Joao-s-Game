@@ -19,13 +19,16 @@ class Background {
       CANVAS_HEIGHT
     );
 
-    this.top += this.speed;
-
     if (this.top >= CANVAS_HEIGHT) {
       this.top = 0;
     }
+
+    let speed = this.speed;
+
     if (isInPowerUpMode) {
-      speed = 15;
+      speed = 45;
     }
+
+    this.top += speed;
   }
 }

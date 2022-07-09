@@ -24,11 +24,52 @@ body{
 
 #game-intro p{
     font-size: 20px;
-    width: 500px;
+    width: 50%;
     text-align: center;
     line-height: 3rem;
 }
-  
+
+#controls-info {
+    position: absolute;
+    top:100%;
+    text-align: center;
+    background-color: gray;
+    font-size: 12px;
+    width: 100%;
+}
+
+#game-zone{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: auto;
+}
+
+#game-over{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: gray;
+    padding: 40px;
+    font-size: 40px;
+    text-align: center;
+}
+
+#score-screen{
+    font-size: 30px;
+    background-color: gray;
+    padding: 10px 0;
+}
+
+
+#chronometer-watch{
+    font-size: 30px;
+    color: red;
+    background-color: black;
+    padding: 10px 0;
+}
 
 .start-game-button{
     margin-left: 45%;
@@ -44,6 +85,22 @@ body{
     color: white;
     border-color: white;
 }
+
+.restart-game-button{
+    margin-left: 45%;
+    background-color: orange;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 15px;
+    transition-duration: 0.3s;
+    margin: 20px;
+}
+.restart-game-button:hover{
+    background-color: #4CAF50;
+    color: white;
+    border-color: white;
+}
+
 .on-screen{
     display: block;
 }

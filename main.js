@@ -1,4 +1,5 @@
 const game = new Game();
+let startEngineSound;
 
 function setup() {
   let canvas = createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -16,4 +17,10 @@ function draw() {
 let startButton = document.getElementById("startButton");
 startButton.addEventListener("click", (event) => {
   game.startGame();
+});
+
+let restartButton = document.getElementById("restartButton");
+restartButton.addEventListener("click", (event) => {
+  game.gameOver();
+  game.restartGame();
 });

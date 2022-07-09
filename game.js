@@ -10,7 +10,10 @@ class Game {
   preload() {
     this.background.preload();
     this.player.preload();
-    obstacleImg = loadImage("images/Formula1.svg");
+    obstacleImg[0] = loadImage("images/BlueCar.svg");
+    obstacleImg[1] = loadImage("images/WhiteCar.svg");
+    obstacleImg[2] = loadImage("images/Truck.svg");
+    obstacleImg[3] = loadImage("images/YellowCar.svg");
     powerUpImg = loadImage("images/NOS.PNG");
   }
 
@@ -30,12 +33,13 @@ class Game {
       return;
     }
 
-    this.background.drawBackground();
+    this.background.drawBackground(this.isPowerUpOn);
     this.player.drawPlayer();
 
-    if (frameCount % 500 === 0) {
+    if (frameCount % 750 === 0) {
       this.powerUpArr.push(new PowerUp(powerUpImg));
     }
+
     this.powerUpArr = this.powerUpArr.filter((powerUp) => {
       powerUp.drawPowerUp();
       if (this.isColliding(this.player, powerUp)) {
@@ -47,8 +51,9 @@ class Game {
       return powerUp.top <= CANVAS_HEIGHT;
     });
 
-    if (frameCount % 50 === 0) {
-      this.obstacleArr.push(new Obstacle(obstacleImg));
+    let randomObstacleImg = random(obstacleImg);
+    if (frameCount % 35 === 0) {
+      this.obstacleArr.push(new Obstacle(randomObstacleImg));
     }
 
     this.obstacleArr = this.obstacleArr.filter((obstacle) => {
@@ -56,12 +61,17 @@ class Game {
 
       if (this.isColliding(this.player, obstacle)) {
         this.gameOver();
+        gameResultLoss.className = "on-screen";
       } else if (obstacle.top >= CANVAS_HEIGHT) {
         score++;
       }
       return obstacle.top <= CANVAS_HEIGHT;
     });
 
+    if (this.chronometer.currentTimeSecs === 0) {
+      this.gameOver();
+      gameResultWin.className = "on-screen";
+    }
     scoreEl.innerHTML = score;
   }
 
@@ -69,6 +79,13 @@ class Game {
     this.hasStarted = true;
     this.chronometer.startTimer();
     this.toggleScreen("game-intro", false);
+    this.toggleScreen("game-zone", true);
+  }
+
+  restartGame() {
+    this.hasStarted = true;
+    this.chronometer.startTimer();
+    this.toggleScreen("game-over", false);
     this.toggleScreen("game-zone", true);
   }
 
@@ -104,9 +121,22 @@ class Game {
   }
 
   gameOver() {
-    noLoop();
-    this.toggleScreen("game-intro", false);
+    this.hasStarted = false;
+    this.intervalId = null;
+    this.isPowerUpOn = false;
+    this.chronometer.stopTimer();
+    this.chronometer.resetTimer();
+    this.player.resetPlayerPosition();
+    this.powerUpArr = [];
+    this.obstacleArr = [];
     this.toggleScreen("game-zone", false);
     this.toggleScreen("game-over", true);
+    scoreResultEl.innerHTML = score;
+    if (score > highestScore) {
+      highestScore = score;
+      highestScoreResultEl.innerHTML = highestScore;
+    }
+    score = 0;
+    scoreEl.innerHTML = score;
   }
 }
