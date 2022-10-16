@@ -130,12 +130,20 @@ class Game {
     this.powerUpArr = [];
     this.obstacleArr = [];
     this.toggleScreen("game-zone", false);
-    this.toggleScreen("game-over", true);
+    let highestScore = localStorage.getItem("highscore");
     scoreResultEl.innerHTML = score;
-    if (score > highestScore) {
-      highestScore = score;
-      highestScoreResultEl.innerHTML = highestScore;
+
+    if (highestScore == null) {
+      highestScore = 0;
     }
+
+    if (score > highestScore) {
+      localStorage.setItem("highscore", score);
+    }
+    highestScoreResultEl.innerHTML = highestScore;
+
+    this.toggleScreen("game-over", true);
+
     score = 0;
     scoreEl.innerHTML = score;
   }

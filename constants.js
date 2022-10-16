@@ -9,7 +9,6 @@ const LETTER_P = 80;
 let obstacleImg = [];
 let powerUpImg;
 let score = 0;
-let highestScore = 0;
 const scoreEl = document.getElementById("scoreEl");
 const scoreResultEl = document.getElementById("score-result");
 const highestScoreResultEl = document.getElementById("highest-score-result");

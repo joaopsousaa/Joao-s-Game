@@ -1,5 +1,4 @@
 const game = new Game();
-let startEngineSound;
 
 function setup() {
   let canvas = createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);

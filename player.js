@@ -25,12 +25,12 @@ class Player {
     }
     if (keyIsDown(ARROW_RIGHT)) {
       if (this.left + this.width < CANVAS_WIDTH - 30) {
-        this.left += 7;
+        this.left += 8;
       }
     }
     if (keyIsDown(ARROW_LEFT)) {
       if (this.left > 30) {
-        this.left -= 7;
+        this.left -= 8;
       }
     }
   }

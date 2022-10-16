@@ -5,7 +5,7 @@ class Obstacle {
     this.top = -105;
     this.width = 70;
     this.img = img;
-    this.speed = 10;
+    this.speed = 9.5;
   }
 
   drawObstacle(isInPowerUpMode) {
@@ -14,7 +14,7 @@ class Obstacle {
     let speed = this.speed;
 
     if (isInPowerUpMode) {
-      speed = 13;
+      speed = 12;
     }
 
     this.top += speed;
